@@ -17,6 +17,8 @@ import CartItems from "./Components/Product/CartItems";
 import Checkout from "./Components/Product/Checkout";
 import OrderSucces from "./Components/NotFound/OrderSucces";
 import CheckoutTest from "./Components/Product/CheckoutTest";
+import Chimiya from "./Components/Chimiya/Chimiya";
+import CategoryProducts from "./Components/CategoryProducts/CategoryProducts";
 
 
 function App() {
@@ -32,6 +34,8 @@ function App() {
                         <Route path='/checkout' element={<Checkout/>}/>
                         <Route path='/checkout-test' element={<CheckoutTest/>}/>
                         <Route path='/order-success' element={<OrderSucces/>}/>
+                        <Route path='/chimiya' element={<Chimiya/>}/>
+                        <Route path='/products' element={<CategoryProducts/>}/>
                         <Route path='/' element={<Home/>}/>
                         <Route path='/*' element={<NotFound/>}/>
 

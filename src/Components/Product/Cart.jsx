@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { useCart } from './CartContext';  // Подразумевается, что CartContext.js находится в той же директории
+import { useCart } from './CartContext';
+import NotCart from "../NotFound/NotCart";  // Подразумевается, что CartContext.js находится в той же директории
 
 const Cart = () => {
     const { cart, removeFromCart, updateQuantity, userInfo, updateUserInfo, setCart } = useCart();
@@ -40,7 +41,7 @@ const Cart = () => {
         <div>
             <h2>Корзина</h2>
             {cart.length === 0 ? (
-                <p>Корзина пуста</p>
+                <NotCart />
             ) : (
                 <>
                     <ul>

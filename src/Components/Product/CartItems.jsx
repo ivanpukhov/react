@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCart } from './CartContext';
 import { Link } from 'react-router-dom';
+import NotCart from "../NotFound/NotCart";
 
 const CartItems = () => {
     const { cart, removeFromCart, updateQuantity } = useCart();
@@ -9,7 +10,7 @@ const CartItems = () => {
         <div>
             <h2>Корзина</h2>
             {cart.length === 0 ? (
-                <p>Корзина пуста</p>
+                <NotCart />
             ) : (
                 <>
                     <ul>

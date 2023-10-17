@@ -9,7 +9,7 @@ const HomeChimiya = () => {
 
     useEffect(() => {
         // Замените этот URL вашим реальным адресом API
-        const apiURL = 'http://localhost:3000/api/products/top/cosmetics';
+        const apiURL = 'http://localhost:3000/api/products/top/chimiya';
 
         axios.get(apiURL)
             .then(response => {

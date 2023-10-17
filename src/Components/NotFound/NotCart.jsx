@@ -1,7 +1,7 @@
-import notFound from "./../../assets/img/204.svg";
+import notFound from "./../../assets/img/405.svg";
 import {Link} from "react-router-dom";
 
-const NotFound = ({product}) => {
+const NotCart = ({product}) => {
     return (
         <Link to={'/'} className='notfound'>
             <img src={notFound} alt=""/>
@@ -10,4 +10,4 @@ const NotFound = ({product}) => {
     )
 }
 
-export default NotFound
+export default NotCart

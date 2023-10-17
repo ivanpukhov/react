@@ -9,7 +9,9 @@ export const CartProvider = ({ children }) => {
         firstName: '',
         lastName: '',
         phoneNumber: '',
-        address: ''
+        address: '',
+        paymentMethod: '',
+        deliveryMethod: ''
     });
 
     useEffect(() => {
