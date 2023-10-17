@@ -2,14 +2,14 @@ import Products from "../../../Products/Products";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
-const HomeBestProducts = () => {
+const HomeBestProducts = (props) => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         // Замените этот URL вашим реальным адресом API
-        const apiURL = 'http://localhost:3000/api/products/top';
+        const apiURL = 'http://localhost:3000/api/products/top/' + props.rout;
 
         axios.get(apiURL)
             .then(response => {
@@ -32,7 +32,7 @@ const HomeBestProducts = () => {
     return (
         <>
             <div className="block__title">
-                Топ товары
+                {props.title}
             </div>
                 <Products products={products}/>
 

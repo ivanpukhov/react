@@ -2,9 +2,6 @@ import React from "react";
 import HomeSlider from "../Home/HomeSlider/HomeSlider";
 import Catalog from "../Catalog/Catalog";
 import HomeBestProducts from "../Home/HomeProds/HomeBestProducts/HomeBestProducts";
-import HomeProducts from "../Home/HomeProds/HomeProducts/HomeProducts";
-import HomeCosmetics from "../Home/HomeProds/HomeCosmetics/HomeCosmetics";
-import HomeChimiya from "../Home/HomeProds/HomeChimiya/HomeChimiya";
 
 const Home = () => {
     return (
@@ -14,10 +11,10 @@ const Home = () => {
                 <Catalog/>
             </div>
 
-            <HomeBestProducts/>
-            <HomeProducts/>
-            <HomeCosmetics/>
-            <HomeChimiya/>
+            <HomeBestProducts rout='' title='Топ товары'/>
+            <HomeBestProducts rout='products' title='Продукты'/>
+            <HomeBestProducts rout='cosmetics' title='Косметика'/>
+            <HomeBestProducts rout='chimiya' title='Бытовая химия>'/>
         </>
     )
 }
