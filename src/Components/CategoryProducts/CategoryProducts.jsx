@@ -12,7 +12,7 @@ const CategoryProducts = (props) => {
     const [selectedSubcategory, setSelectedSubcategory] = useState("all");
 
     useEffect(() => {
-        const apiURL = `http://localhost:3000/api/products/category/${props.rout}`;
+        const apiURL = `/api/products/category/${props.rout}`;
         axios.get(apiURL)
             .then(response => {
                 setProducts(response.data);
@@ -26,7 +26,7 @@ const CategoryProducts = (props) => {
 
 
     useEffect(() => {
-        const apiURL = `http://localhost:3000/api/products/category/${props.rout}/subcategories`;
+        const apiURL = `/api/products/category/${props.rout}/subcategories`;
         axios.get(apiURL)
             .then(response => {
                 setSubcategories(response.data);

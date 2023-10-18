@@ -29,7 +29,7 @@ const Search = () => {
 
     useEffect(() => {
         if (query.length >= 2) {
-            axios.get(`http://localhost:3000/api/search/autocomplete?q=${query}`)
+            axios.get(`/api/search/autocomplete?q=${query}`)
                 .then(response => {
                     setResults(response.data);
                 })
@@ -64,9 +64,8 @@ const Search = () => {
         setRecentSearches([]);
     };
 
-    return (<div ref={inputRef}>
+    return (<div className="header__search" ref={inputRef}>
         <input
-            className="header__search"
             placeholder="Найти на miko"
             value={query}
             onChange={e => setQuery(e.target.value)}

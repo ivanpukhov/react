@@ -41,7 +41,7 @@ const Checkout = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:3000/api/orders/', orderData);
+            const response = await axios.post('/api/orders/', orderData);
 
             if (response.status === 200) {
                 console.log('Order created successfully:', response.data);

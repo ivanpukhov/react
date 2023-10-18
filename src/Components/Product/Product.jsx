@@ -1,29 +1,27 @@
-import { CartContext } from './CartContext';
-import { useContext } from 'react';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { CartContext } from "../Product/CartContext";  // Импортировать ваш контекст корзины
 
-const Product = ({product}) => {
-    const { addToCart } = useContext(CartContext);
+const Product = ({ product }) => {
+    const { cart } = useContext(CartContext); // Использовать контекст корзины
 
-    const handleAddToCart = () => {
-        addToCart(product);
-    };
+    // Проверить, есть ли товар в корзине
+    const isInCart = !!cart.find(item => Number(item.id) === Number(product.id));
+
     return (
-        <div key={product.id} className="product">
+        <Link  to={`/product/${product.id}`} key={product.id} className="product">
             <div className="product__photo">
-                <img src={'http://localhost:3000/api' + product.imageUrl} alt=""/>
-
+                <img src={'/api' + product.imageUrl} alt="" />
             </div>
             <div className="product__content">
                 <div className="product__title">{product.name}</div>
                 <div className="product__price">{product.price} <span>₸</span></div>
             </div>
-            <div className="product__btn" onClick={handleAddToCart}>
-                В корзину
-            </div>
-        </div>
+            <Link to={`/product/${product.id}`} className={`product__btn ${isInCart ? 'button-disabled' : ''}`}>
+                {isInCart ? "В корзине" : "Купить"}
+            </Link>
+        </Link>
+    );
+};
 
-
-    )
-}
-
-export default Product
+export default Product;

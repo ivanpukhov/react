@@ -12,20 +12,20 @@ const Header = () => {
                 <Link to={'/'} className="header__logo">
                     <img src={logo} alt=""/>
                 </Link>
-                <div className="header__btn hum__btn dnm">
+                <Link to='/catalog' className="header__btn hum__btn dnm">
                     <div className="before__img"><img src={hum} alt=""/></div>
 
                     Каталог
-                </div>
+                </Link>
                 <Search />
 
                 <Link to={'/cart'} className="header__btn cart__btn dnm">
                     <div className="before__img"><img src={cart} alt=""/></div>
                     Корзина
                 </Link>
-                <div className="header__btn like__btn">
+                <Link to={'/favorite'} className="header__btn like__btn">
                     <img src={favorite} alt=""/>
-                </div>
+                </Link>
             </div>
         </header>
 

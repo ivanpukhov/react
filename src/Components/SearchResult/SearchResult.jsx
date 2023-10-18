@@ -16,7 +16,7 @@ const SearchResult = () => {
         const {query} = qs.parse(location.search);
 
         // Замените этот URL вашим реальным адресом API
-        const apiURL = `http://localhost:3000/api/products/search?q=${query}`;
+        const apiURL = `/api/products/search?q=${query}`;
 
         axios.get(apiURL)
             .then(response => {

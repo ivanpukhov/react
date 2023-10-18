@@ -8,8 +8,8 @@ const Catalog = () => {
             <Link to="products" className="catalog__item catalog__products">Продукты</Link>
             <Link to="cosmetics" className="catalog__item catalog__cosmetic">Косметика</Link>
             <Link to="chimiya" className="catalog__item catalog__tovar">Бытовая химия</Link>
-            <Link to="products" className="catalog__item catalog__dishes">Посуда</Link>
-            <Link to="products" className="catalog__item catalog__kpop">Shop</Link>
+            <Link to="posuda" className="catalog__item catalog__dishes">Посуда</Link>
+            <Link to="kpop" className="catalog__item catalog__kpop">K-Pop Shop</Link>
         </div>
     </div>)
 }

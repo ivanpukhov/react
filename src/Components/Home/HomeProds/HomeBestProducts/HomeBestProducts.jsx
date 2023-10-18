@@ -1,6 +1,7 @@
 import Products from "../../../Products/Products";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import {ClipLoader} from "react-spinners";
 
 const HomeBestProducts = (props) => {
     const [products, setProducts] = useState([]);
@@ -9,7 +10,7 @@ const HomeBestProducts = (props) => {
 
     useEffect(() => {
         // Замените этот URL вашим реальным адресом API
-        const apiURL = 'http://localhost:3000/api/products/top/' + props.rout;
+        const apiURL = '/api/products/top/' + props.rout;
 
         axios.get(apiURL)
             .then(response => {
@@ -23,8 +24,9 @@ const HomeBestProducts = (props) => {
     }, []);
 
     if (loading) {
-        return <p>Loading...</p>;
-    }
+        return (<div className="dacc">
+            <ClipLoader color="#0CE3CB" loading={loading} size={50}/>
+        </div>);    }
 
     if (error) {
         return <p>Error: {error}</p>;
