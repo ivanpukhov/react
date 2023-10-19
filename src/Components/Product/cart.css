@@ -456,3 +456,16 @@ input#delevery__kaspi:checked ~ label.checkout__label-kaspi > .checkout__no {
         display: none;
     }
 }
+
+.invalid__label>label {
+    border: 2px solid red;
+
+}
+.invalid {
+    border: 2px solid red;
+}
+
+.invalid::placeholder {
+    color: rgba(255, 0, 0, 0.77);
+    font-weight: 400;
+}
