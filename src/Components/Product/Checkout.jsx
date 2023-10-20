@@ -70,7 +70,6 @@ const Checkout = () => {
     };
 
 
-
     const totalCost = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -96,7 +95,7 @@ const Checkout = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:3000/api/orders/', orderData);
+            const response = await axios.post('/api/orders/', orderData);
 
             if (response.status === 200) {
                 console.log('Order created successfully:', response.data);
@@ -186,7 +185,7 @@ const Checkout = () => {
                                     name="address"
                                     value={userInfo.address}
                                     onChange={handleInputChange}
-                                    placeholder={` ${invalidFields.phoneNumber ? "Введите адрес " : "Адрес"}` }
+                                    placeholder={` ${invalidFields.phoneNumber ? "Введите адрес " : "Адрес"}`}
 
 
                                 />
@@ -196,7 +195,7 @@ const Checkout = () => {
                                     type="text" required
 
                                     className={`checkout__input-item ${invalidFields.firstName ? "invalid" : ""}`}
-                                    placeholder={` ${invalidFields.phoneNumber ? "Введите имя " : "Имя"}` }
+                                    placeholder={` ${invalidFields.phoneNumber ? "Введите имя " : "Имя"}`}
 
                                     name="firstName"
                                     value={userInfo.firstName}
@@ -210,7 +209,7 @@ const Checkout = () => {
 
                                     type="text"
                                     className={`checkout__input-item ${invalidFields.lastName ? "invalid" : ""}`}
-                                    placeholder={` ${invalidFields.phoneNumber ? "Введите фамилию " : "Фамилия"}` }
+                                    placeholder={` ${invalidFields.phoneNumber ? "Введите фамилию " : "Фамилия"}`}
 
                                     name="lastName"
                                     value={userInfo.lastName}
@@ -225,7 +224,7 @@ const Checkout = () => {
                                     mask="+7 (999) 999-99-99"
                                     // maskChar={null}
                                     className={`checkout__input-item ${invalidFields.phoneNumber ? "invalid" : ""}`}
-                                    placeholder={` ${invalidFields.phoneNumber ? "Введите номер телефона " : "Номер телефона"}` }
+                                    placeholder={` ${invalidFields.phoneNumber ? "Введите номер телефона " : "Номер телефона"}`}
                                     name="phoneNumber"
                                     value={userInfo.phoneNumber}
 
@@ -278,7 +277,7 @@ const Checkout = () => {
                             {cart.map((item) => (<div className='cart__item' key={item.id}>
                                     <div className="cart__top">
                                         <div className="cart__photo">
-                                            <img src={'http://localhost:3000/api' + item.imageUrl} alt=""/>
+                                            <img src={'/api' + item.imageUrl} alt=""/>
                                         </div>
                                         <div className="cart__content">
 
@@ -347,10 +346,18 @@ const Checkout = () => {
                             <div className="checkout__price-left"> Товаров: {totalItems}. На сумму</div>
                             <div className="checkout__price-right">{totalCost} ₸</div>
                         </div>
+
                         <div className="checkout__price">
                             <div className="checkout__price-left">Итоговая цена (-5%)</div>
-                            <div className="checkout__price-right">{totalCost*0.95} ₸</div>
+                            <div className="checkout__price-right">{totalCost * 0.95} ₸</div>
                         </div>
+                        <div className="checkout__price">
+                            <div className="checkout__price-left">Доставка*</div>
+                            <div className="checkout__price-right">
+                                {totalCost * 0.95 >= 20000 ? "Бесплатно " : "По тарифу яндекс"}
+                            </div>
+                        </div>
+                        <div className="sub">Доставка бесплатно при заказе от 20 000 тенге</div>
                         <div className="checkout__btn" onClick={handleSubmit}>
                             Купить
                         </div>

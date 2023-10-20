@@ -9,7 +9,7 @@ const Catalog = () => {
             <Link to="cosmetics" className="catalog__item catalog__cosmetic">Косметика</Link>
             <Link to="chimiya" className="catalog__item catalog__tovar">Бытовая химия</Link>
             <Link to="posuda" className="catalog__item catalog__dishes">Посуда</Link>
-            <Link to="kpop" className="catalog__item catalog__kpop">K-Pop Shop</Link>
+            <Link to="head" className="catalog__item catalog__kpop">Уход за волосами</Link>
         </div>
     </div>)
 }
