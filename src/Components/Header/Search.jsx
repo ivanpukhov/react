@@ -70,7 +70,9 @@ const Search = () => {
             value={query}
             onChange={e => setQuery(e.target.value)}
             onClick={() => setIsActive(true)}
+            style={isActive ? {width: '100vw', position: 'absolute', left: 0, top: 0, background: '#fff', color: '#000', fontSize: '16px'} : {}}
         />
+
         {isActive && (<div ref={searchResultRef} className="search__result">
             {query && (<div className="search__result-item" onClick={() => goToSearchResult(query)}>
                 {query}

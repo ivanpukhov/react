@@ -217,27 +217,39 @@ h6 {
 }
 
 .catalog__products {
-    background: url("./assets/img/catalog/products.svg");
+    background: url("./assets/img/catalog/products.png");
+    background-size: cover;
+
 }
 
 .catalog__cosmetic {
-    background: url("./assets/img/catalog/cosmetics.svg");
+    background: url("./assets/img/catalog/cosmetics.png");
+    background-size: cover;
+
 }
 
 .catalog__tovar {
-    background: url("./assets/img/catalog/tovar.svg");
+    background: url("./assets/img/catalog/tovar.png");
+    background-size: cover;
+
 }
 
 .catalog__dishes {
-    background: url("./assets/img/catalog/dishes.svg");
+
+    background: url("./assets/img/catalog/dishes.png");
+    background-size: cover;
+
 }
 
 .catalog__kpop {
-    background: url("./assets/img/catalog/kpop.svg");
+    background: url("./assets/img/catalog/kpop.png");
+    background-size: cover;
+
 }
 
 .block__title {
     font-size: 36px;
+
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -476,7 +488,7 @@ h6 {
 @media screen and (max-width: 1110px) {
 
     .block__title {
-        font-size: 24px;
+        font-size: 32px;
         margin-top: 24px;
     }
     .subcategories {
@@ -572,7 +584,7 @@ h6 {
 
     .header__search input{
         color: #FFF;
-
+        font-size: 16px;
     }
 
     .slider {
