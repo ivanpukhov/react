@@ -26,7 +26,10 @@ app.use(
 app.use(express.static(path.join(__dirname, 'build')));
 
 // Обслуживайте index.html для всех оставшихся маршрутов, чтобы поддерживать клиентский роутинг
-app.get('*', (req, res) => {
+app.get('*', (req, res, next) => {
+  if (req.path === '/sitemap.xml') {
+    return next();  // Пропустите, если это запрос на sitemap.xml
+  }
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
