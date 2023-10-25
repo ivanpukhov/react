@@ -12,11 +12,10 @@ const ProductDetail = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const [isInCart, setIsInCart] = useState(false);
+    const [quantity, setQuantity] = useState(1); // Добавленное состояние для количества
     const {cart, addToCart} = useContext(CartContext);
 
-    const { favoriteProducts, addToFavorites, removeFromFavorites } = useFavorites();
-
-    // Проверить, находится ли товар в избранном
+    const {favoriteProducts, addToFavorites, removeFromFavorites} = useFavorites();
     const isInFavorites = favoriteProducts.some(item => item.id === product?.id);
 
     const handleAddToFavorites = () => {
@@ -26,16 +25,16 @@ const ProductDetail = () => {
     const handleRemoveFromFavorites = () => {
         removeFromFavorites(product.id);
     };
+
+    const handleQuantityChange = (e) => {
+        setQuantity(e.target.value);
+    };
+
     useEffect(() => {
-        console.log("Current cart:", cart);  // Посмотреть текущее состояние корзины
-        console.log("Current product id:", id);  // Посмотреть текущий id продукта
         const productInCart = cart.find(item => Number(item.id) === Number(id));
         setIsInCart(!!productInCart);
-        console.log("Is product in cart:", !!productInCart);  // для отладки
     }, [cart, id]);
 
-
-    // Загрузка данных о товаре
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -52,7 +51,7 @@ const ProductDetail = () => {
     }, [id]);
 
     const handleAddToCart = () => {
-        addToCart(product);
+        addToCart({...product, quantity: Number(quantity)});  // Учитываем количество
         setIsInCart(true);
     };
 
@@ -60,17 +59,9 @@ const ProductDetail = () => {
         navigate(-1);
     };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
-
-    if (!product) {
-        return <div>Product not found</div>;
-    }
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+    if (!product) return <div>Product not found</div>;
 
     return (<div className='detail_pc'>
         <div className="detail">
@@ -94,7 +85,8 @@ const ProductDetail = () => {
                                 <path
                                     d="M26.6875 12.625C24.8041 12.625 23.1325 13.3684 22 14.6463C20.8675 13.3684 19.1959 12.625 17.3125 12.625C15.6721 12.627 14.0994 13.2795 12.9395 14.4395C11.7795 15.5994 11.127 17.1721 11.125 18.8125C11.125 25.5944 21.0447 31.0131 21.4666 31.2409C21.6305 31.3292 21.8138 31.3754 22 31.3754C22.1862 31.3754 22.3695 31.3292 22.5334 31.2409C22.9553 31.0131 32.875 25.5944 32.875 18.8125C32.873 17.1721 32.2205 15.5994 31.0605 14.4395C29.9006 13.2795 28.3279 12.627 26.6875 12.625ZM17 15.5C15.6943 16.608 22.4714 26.6239 21 27.5C19.5286 26.6239 19.1329 27.0792 17.8272 25.9713C19.5 28.9525 22 30.5994 22 27.8413C22 26.797 21.2616 29.2384 22 28.5C20.9557 28.5 22.7384 27.7616 22 28.5C23.6687 28.5 24.3873 16.1568 20.9584 17.1756C21.0429 17.3825 21.1871 17.5596 21.3726 17.6842C21.5581 17.8089 16.7765 15.5 17 15.5C17.2235 15.5 17 15.5 22.6274 17.6842C22.6274 17.6842 22.9571 17.3825 23.0416 17.1756C23.6219 15.7562 29.3918 17.8755 31.0605 17.8755C32.1048 17.8755 28.7333 15.2898 29.4717 16.0283C30.2102 16.7667 2.83344 14.7835 20.9584 17.5678C20.9584 20.3259 19.0316 13.7572 17 15.5Z"
                                     fill="#0CE3CB"/>
-                            </svg>                        </div>
+                            </svg>
+                        </div>
                     ) : (
                         <div onClick={handleAddToFavorites}>
                             <svg width="44" height="44" viewBox="0 0 44 44" fill="none"
@@ -150,11 +142,23 @@ const ProductDetail = () => {
                 <div className="detail__about-title">
                     О товаре
                 </div>
+
                 <div className="detail__price-text">
                     {product.description}
                 </div>
             </div>
-
+            Количество
+            <div className="checkout__input">
+                <input
+                    type="number"
+                    id="quantity"
+                    value={quantity}
+                    placeholder="Количество"
+                    onChange={handleQuantityChange}
+                    min="1"
+                    className="checkout__input-item"
+                />
+            </div>
             <div className={`detail__btn ${isInCart ? 'button-disabled' : ''}`}
                  onClick={isInCart ? null : handleAddToCart}>
                 {isInCart ? "Уже в корзине" : "В корзину"}
