@@ -16,20 +16,14 @@ const buildSitemapUrls = () => [
   // ... дополнительные URL
 ];
 
-// Подключение sitemap к приложению
-app.use(
-    '/sitemap.xml',
-    expressSitemapXml(buildSitemapUrls, 'https://miko-astana.kz')
-);
-
 // Укажите путь к собранным файлам
 app.use(express.static(path.join(__dirname, 'build')));
 
+// Явно определяем маршрут для sitemap.xml перед обработчиком app.get('*')
+app.get('/sitemap.xml', expressSitemapXml(buildSitemapUrls, 'https://miko-astana.kz'));
+
 // Обслуживайте index.html для всех оставшихся маршрутов, чтобы поддерживать клиентский роутинг
-app.get('*', (req, res, next) => {
-  if (req.path === '/sitemap.xml') {
-    return next();  // Пропустите, если это запрос на sitemap.xml
-  }
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
