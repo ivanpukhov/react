@@ -11,6 +11,7 @@ const CatalogPage = () => {
                 <Link to="/chimiya" className="catalogPage__item ">Бытовая химия</Link>
                 <Link to="/head" className="catalogPage__item ">Уход за волосами</Link>
                 <Link to="/posuda" className="catalogPage__item ">Посуда</Link>
+                <Link to="/bads" className="catalogPage__item ">Бады></Link>
                 <Link to="/kpop" className="catalogPage__item ">K-Pop Shop</Link>
             </div>
         </div>)
