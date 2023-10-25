@@ -42,16 +42,19 @@ export const CartProvider = ({ children }) => {
     const addToCart = (product) => {
         const existingProduct = cart.find((item) => item.id === product.id);
         if (existingProduct) {
+            // Обновляем количество существующего продукта в корзине
             const updatedCart = cart.map((item) =>
                 item.id === product.id
-                    ? { ...item, quantity: item.quantity + 1 }
+                    ? { ...item, quantity: item.quantity + product.quantity }
                     : item
             );
             setCart(updatedCart);
         } else {
-            setCart([...cart, { ...product, quantity: 1 }]);
+            // Добавляем новый продукт в корзину с выбранным количеством
+            setCart([...cart, { ...product, quantity: product.quantity }]);
         }
     };
+
 
     const removeFromCart = (productId) => {
         const updatedCart = cart.filter((item) => item.id !== productId);
