@@ -217,32 +217,32 @@ h6 {
 }
 
 .catalog__products {
-    background: url("./assets/img/catalog/products.png");
+    background: url("./assets/img/catalog/products.webp");
     background-size: cover;
 
 }
 
 .catalog__cosmetic {
-    background: url("./assets/img/catalog/cosmetics.png");
+    background: url("./assets/img/catalog/cosmetics.webp");
     background-size: cover;
 
 }
 
 .catalog__tovar {
-    background: url("./assets/img/catalog/tovar.png");
+    background: url("./assets/img/catalog/tovar.webp");
     background-size: cover;
 
 }
 
 .catalog__dishes {
 
-    background: url("./assets/img/catalog/dishes.png");
+    background: url("./assets/img/catalog/dishes.webp");
     background-size: cover;
 
 }
 
 .catalog__kpop {
-    background: url("./assets/img/catalog/kpop.png");
+    background: url("./assets/img/catalog/kpop.webp");
     background-size: cover;
 
 }
