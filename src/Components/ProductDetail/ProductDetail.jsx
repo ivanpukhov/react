@@ -148,24 +148,31 @@ const ProductDetail = () => {
                 </div>
             </div>
             Количество
-            <div className="checkout__input">
-                <input
-                    type="number"
-                    id="quantity"
-                    value={quantity}
-                    placeholder="Количество"
-                    onChange={handleQuantityChange}
-                    min="1"
-                    className="checkout__input-item"
-                />
-            </div>
-            <div className={`detail__btn ${isInCart ? 'button-disabled' : ''}`}
-                 onClick={isInCart ? null : handleAddToCart}>
-                {isInCart ? "Уже в корзине" : "В корзину"}
-            </div>
-            <Link to="/cart" className={`detail__btn ${isInCart ? '' : 'disn'}`}>Перейти в корзину</Link>
-
-
+            {product.isAvailable ? (
+                <>
+                    Количество
+                    <div className="checkout__input">
+                        <input
+                            type="number"
+                            id="quantity"
+                            value={quantity}
+                            placeholder="Количество"
+                            onChange={handleQuantityChange}
+                            min="1"
+                            className="checkout__input-item"
+                        />
+                    </div>
+                    <div className={`detail__btn ${isInCart ? 'button-disabled' : ''}`}
+                         onClick={isInCart ? null : handleAddToCart}>
+                        {isInCart ? "Уже в корзине" : "В корзину"}
+                    </div>
+                    <Link to="/cart" className={`detail__btn ${isInCart ? '' : 'disn'}`}>Перейти в корзину</Link>
+                </>
+            ) : (
+                <div className="detail__availability">
+                    Нет в наличии
+                </div>
+            )}
         </div>
 
     </div>);
