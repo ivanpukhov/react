@@ -9,7 +9,7 @@ const Product = ({ product }) => {
     const isInCart = !!cart.find(item => Number(item.id) === Number(product.id));
 
     return (
-        <Link  to={`/product/${product.id}`} key={product.id} className="product">
+        <Link to={`/product/${product.id}`} key={product.id} className="product">
             <div className="product__photo">
                 <img src={'/api' + product.imageUrl} alt="" />
             </div>
@@ -17,9 +17,15 @@ const Product = ({ product }) => {
                 <div className="product__title">{product.name}</div>
                 <div className="product__price">{product.price} <span>₸</span></div>
             </div>
-            <Link to={`/product/${product.id}`} className={`product__btn ${isInCart ? 'button-disabled' : ''}`}>
-                {isInCart ? "В корзине" : "Купить"}
-            </Link>
+            {product.isAvailable ? (
+                <Link to={`/product/${product.id}`} className={`product__btn ${isInCart ? 'button-disabled' : ''}`}>
+                    {isInCart ? "В корзине" : "Купить"}
+                </Link>
+            ) : (
+                <div className="product__btn button-disabled">
+                    Нет в наличии
+                </div>
+            )}
         </Link>
     );
 };
