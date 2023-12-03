@@ -240,6 +240,18 @@ h6 {
 
 }
 
+.catalog__body {
+    background: url("./assets/img/catalog/body.svg");
+    background-size: cover;
+    display: none;
+}
+
+.catalog__others {
+    background: url("./assets/img/catalog/others.svg");
+    background-size: cover;
+    display: none;
+}
+
 .catalog__dishes {
 
     background: url("./assets/img/catalog/dishes.webp");
@@ -491,12 +503,19 @@ h6 {
 
 
 
+@media screen and (max-width: 1410px) {
+    .catalog__body, .catalog__others{
+        display: block;
+    }
+}
 @media screen and (max-width: 1110px) {
 
     .block__title {
         font-size: 32px;
         margin-top: 24px;
     }
+
+
     .subcategories {
         display: flex;
         flex-wrap: nowrap;
