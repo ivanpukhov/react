@@ -17,15 +17,11 @@ const Product = ({ product }) => {
                 <div className="product__title">{product.name}</div>
                 <div className="product__price">{product.price} <span>₸</span></div>
             </div>
-            {product.isAvailable ? (
+            
                 <Link to={`/product/${product.id}`} className={`product__btn ${isInCart ? 'button-disabled' : ''}`}>
                     {isInCart ? "В корзине" : "Купить"}
                 </Link>
-            ) : (
-                <div className="product__btn button-disabled">
-                    Нет в наличии
-                </div>
-            )}
+            
         </Link>
     );
 };

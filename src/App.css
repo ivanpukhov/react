@@ -234,6 +234,12 @@ h6 {
 
 }
 
+.catalog__bads {
+    background: url("./assets/img/catalog/bads.svg");
+    background-size: cover;
+
+}
+
 .catalog__dishes {
 
     background: url("./assets/img/catalog/dishes.webp");
