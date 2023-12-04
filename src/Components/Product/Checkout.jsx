@@ -119,6 +119,8 @@ const Checkout = () => {
                             <div className="checkout__subtitle">
                                 Условия доставки
                             </div>
+                            <div className="sub">Заказы оформляются на отправку с 10:00 до 21:00. После 21:00 заказы переносятся на следующий день</div>
+
                             <div
                                 className={`checkout__form ${invalidFields.deliveryMethod ? "invalid__label" : ""}`}
                             >
