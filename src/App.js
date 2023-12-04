@@ -49,6 +49,7 @@ const AppContent = () => {
                     <Route path='/head' element={<CategoryProducts rout="head" title="Уход за волосами"/>}/>
                     <Route path='/bads' element={<CategoryProducts rout="bads" title="БАДы"/>}/>
                     <Route path='/others' element={<CategoryProducts rout="others" title="Прочие товары"/>}/>
+                    <Route path='/posuda' element={<CategoryProducts rout="posuda" title="Посуда"/>}/>
                     <Route path='/body' element={<CategoryProducts rout="body" title="Уход за телом"/>}/>
                     <Route path='/product/:id' element={<ProductDetail/>}/>
                     <Route path='/catalog' element={<CatalogPage/>}/>
