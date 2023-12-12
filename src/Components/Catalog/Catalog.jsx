@@ -15,6 +15,11 @@ const Catalog = () => {
             <Link to="others" className="catalog__item catalog__others">Прочие товары</Link>
 
         </div>
+        <div className="catalog__title">Акция</div>
+        <div className="catalog__block">
+            <Link to="product/337" className="catalog__act catalog__action"></Link>
+
+        </div>
     </div>)
 }
 

@@ -252,6 +252,8 @@ h6 {
     display: none;
 }
 
+
+
 .catalog__dishes {
 
     background: url("./assets/img/catalog/dishes.webp");
@@ -744,6 +746,15 @@ h6 {
         height: 133px;
         font-size: 20px;
 
+    }
+
+    .catalog__act{
+        width: 100%;
+        height: 160px;
+        font-size: 20px;
+        background: #B51600;
+        background: url("./assets/img/act.png");
+        background-size: 100% 100%;
     }
 
     .products {

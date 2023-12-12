@@ -6,6 +6,7 @@ import HomeBestProducts from "../Home/HomeProds/HomeBestProducts/HomeBestProduct
 const Home = () => {
     return (
         <>
+
             <div className="home">
                 <HomeSlider/>
                 <Catalog/>

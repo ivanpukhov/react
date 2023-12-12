@@ -1,3 +1,4 @@
+import Snowfall from "react-snowfall";
 import logo from "../../assets/img/logo.svg";
 import cart from "../../assets/img/cart.svg";
 import hum from "../../assets/img/hum.svg";
@@ -6,8 +7,9 @@ import Search from "./Search";
 import {Link} from "react-router-dom";
 
 const Header = () => {
-    return(
-        <header className="header">
+    return (<header className="header">
+            <Snowfall/>
+
             <div className="header__container">
                 <Link to={'/'} className="header__logo">
                     <img src={logo} alt=""/>
@@ -17,7 +19,7 @@ const Header = () => {
 
                     Каталог
                 </Link>
-                <Search />
+                <Search/>
 
                 <Link to={'/cart'} className="header__btn cart__btn dnm">
                     <div className="before__img"><img src={cart} alt=""/></div>
