@@ -131,6 +131,10 @@ h6 {
     letter-spacing: -0.3px;
 }
 
+.catalog__act{
+    display: none;
+}
+
 .header__btn {
     border-radius: 10px;
     background: rgba(254, 254, 254, 0.196);
@@ -755,6 +759,7 @@ h6 {
         background: #B51600;
         background: url("./assets/img/act.png");
         background-size: 100% 100%;
+        display: flex;
     }
 
     .products {
