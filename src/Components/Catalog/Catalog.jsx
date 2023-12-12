@@ -16,7 +16,7 @@ const Catalog = () => {
 
         </div>
         <div className="catalog__title">Акция</div>
-        <div className="catalog__block">
+        <div className="catalog__block db">
             <Link to="product/337" className="catalog__act catalog__action"></Link>
 
         </div>
