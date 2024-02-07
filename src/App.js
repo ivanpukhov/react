@@ -16,7 +16,6 @@ import ProductDetail from "./Components/ProductDetail/ProductDetail";
 import FavoriteProducts from "./Components/Product/FavoriteProducts";
 import {FavoritesProvider} from "./Components/Product/FavoritesContext";
 import CatalogPage from "./Components/CatalogPage/CatalogPage";
-import Snowfall from "react-snowfall";
 
 function App() {
     return (
@@ -37,9 +36,7 @@ const AppContent = () => {
 
     return (
         <>
-            <Snowfall
-                snowflakeCount={200}
-            />
+
 
             {!hideHeader && <Header />}
             <div className="container">

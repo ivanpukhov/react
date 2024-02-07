@@ -1,4 +1,3 @@
-import Snowfall from "react-snowfall";
 import logo from "../../assets/img/logo.svg";
 import cart from "../../assets/img/cart.svg";
 import hum from "../../assets/img/hum.svg";
@@ -8,7 +7,6 @@ import {Link} from "react-router-dom";
 
 const Header = () => {
     return (<header className="header">
-            <Snowfall/>
 
             <div className="header__container">
                 <Link to={'/'} className="header__logo">
