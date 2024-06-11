@@ -13,7 +13,7 @@ const Catalog = () => {
             <Link to="bads" className="catalog__item catalog__bads">БАДы</Link>
             <Link to="body" className="catalog__item catalog__body">Уход за телом</Link>
             <Link to="others" className="catalog__item catalog__others">Прочие товары</Link>
-            <Link to="others" className="catalog__item catalog__discont">Товары со скидкой до 50%</Link>
+            <Link to="discont" className="catalog__item catalog__discont">Товары со скидкой до 50%</Link>
 
         </div>
         <div className="catalog__title">Акция</div>
