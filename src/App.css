@@ -240,7 +240,7 @@ h6 {
 .catalog__bads {
     background: url("./assets/img/catalog/bads.svg");
     background-size: cover;
-
+    display: none;
 }
 
 .catalog__body {
@@ -255,8 +255,25 @@ h6 {
     display: none;
 }
 
+.catalog__all {
+    background: url("./assets/img/catalog/cat.svg");
+    background-size: cover;
+    display: flex;
+    padding-right: 40px;
+}
+
 .catalog__discont {
     background: url("./assets/img/catalog/discont.svg");
+    background-size: cover;
+    display: none;
+}
+
+.mt20{
+    display: none;
+}
+
+.catalog__finish {
+    background: url("./assets/img/catalog/finished.svg");
     background-size: cover;
     display: none;
 }
@@ -517,8 +534,16 @@ h6 {
 
 
 @media screen and (max-width: 1410px) {
-    .catalog__body, .catalog__others, .catalog__discont {
+    .catalog__body, .catalog__others, .catalog__discont, .catalog__finish, .mt20, .catalog__bads {
         display: block;
+    }
+
+    .catalog__all{
+        display: none;
+    }
+
+    .mt20{
+        margin-top: 20px;
     }
 }
 

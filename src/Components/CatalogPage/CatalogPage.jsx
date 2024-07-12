@@ -15,6 +15,7 @@ const CatalogPage = () => {
                 <Link to="/bads" className="catalogPage__item ">Бады</Link>
                 <Link to="/others" className="catalogPage__item ">Прочие товары</Link>
                 <Link to="/discont" className="catalogPage__item ">Товары со скидкой до 50%</Link>
+                <Link to="/finished" className="catalogPage__item ">Готовая продукция</Link>
             </div>
         </div>)
 }
