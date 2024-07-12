@@ -262,6 +262,18 @@ h6 {
     padding-right: 40px;
 }
 
+.wame{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #3cbd04;
+    font-size: 18px;
+    border-radius: 20px;
+    color: white;
+}
+
 .catalog__discont {
     background: url("./assets/img/catalog/discont.svg");
     background-size: cover;
@@ -533,6 +545,11 @@ h6 {
 }
 
 
+@media screen and (min-width: 1410px) {
+    .wame{
+        margin-bottom: 20px;
+    }
+}
 @media screen and (max-width: 1410px) {
     .catalog__body, .catalog__others, .catalog__discont, .catalog__finish, .mt20, .catalog__bads {
         display: block;
@@ -543,7 +560,6 @@ h6 {
     }
 
     .mt20{
-        margin-top: 20px;
     }
 }
 
