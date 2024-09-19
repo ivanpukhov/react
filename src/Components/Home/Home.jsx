@@ -12,11 +12,7 @@ const Home = () => {
                 <HomeSlider/>
                 <Catalog/>
                 <a href='https://wa.me/77020581667' className='wame' target='_blank'>Связаться с менеджером</a>
-                <div className="catalog__title mt20">Акция</div>
-                <div className="catalog__block db">
-                    <Link to="product/337" className="catalog__act catalog__action"></Link>
 
-                </div>
             </div>
 
             <HomeBestProducts rout='' title='Топ товары'/>
