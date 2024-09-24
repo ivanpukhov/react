@@ -1,13 +1,13 @@
 import React from 'react';
 import {useCart} from './CartContext';
-import {Link, useNavigate} from 'react-router-dom';
-import shop from './img/shop.svg'
-import yes from './img/yes.svg'
-import no from './img/no.svg'
-import nal from './img/nal.svg'
-import kaspi from './img/kaspi.svg'
-import adress from './img/adress.svg'
-import './cart.css'
+import {useNavigate} from 'react-router-dom';
+import shop from './img/shop.svg';
+import yes from './img/yes.svg';
+import no from './img/no.svg';
+import nal from './img/nal.svg';
+import kaspi from './img/kaspi.svg';
+import adress from './img/adress.svg';
+import './cart.css';
 import axios from 'axios';
 import NotCart from "../NotFound/NotCart";
 import InputMask from 'react-input-mask';
@@ -18,10 +18,10 @@ const Checkout = () => {
     const {cart, userInfo, removeFromCart, updateQuantity, updateUserInfo, setCart} = useCart();
     const navigate = useNavigate();
     const validateFields = () => {
-        let newInvalidFields = {...invalidFields}; // Создаем копию текущего стейта
+        let newInvalidFields = {...invalidFields};
 
-        if (userInfo.address) delete newInvalidFields.address; // Удаляем из invalidFields, если поле заполнено
-        else newInvalidFields.address = true; // Добавляем в invalidFields, если поле пустое
+        if (userInfo.address) delete newInvalidFields.address;
+        else newInvalidFields.address = true;
 
         if (userInfo.firstName) delete newInvalidFields.firstName;
         else newInvalidFields.firstName = true;
@@ -40,14 +40,10 @@ const Checkout = () => {
         return Object.keys(newInvalidFields).length === 0;
     };
 
-
     const handleRadioChange = (e) => {
         const {name, value} = e.target;
-
-        // Обновляем информацию о пользователе
         updateUserInfo(name, value);
 
-        // Проверяем, является ли радио-кнопка недействительной, и если да, удаляем её из invalidFields
         if (invalidFields[name]) {
             const newInvalidFields = {...invalidFields};
             delete newInvalidFields[name];
@@ -57,11 +53,8 @@ const Checkout = () => {
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;
-
-        // Обновляем информацию о пользователе
         updateUserInfo(name, value);
 
-        // Проверяем, является ли поле недействительным, и если да, удаляем его из invalidFields
         if (invalidFields[name]) {
             const newInvalidFields = {...invalidFields};
             delete newInvalidFields[name];
@@ -69,14 +62,21 @@ const Checkout = () => {
         }
     };
 
-
     const totalCost = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+    // Расчет итоговой стоимости с учетом того, что к товарам из категории discont скидка не применяется
+    const totalCostWithDiscount = cart.reduce((acc, item) => {
+        console.log(item.category)
+
+        if (item.category === 'discont') {
+            return acc + item.price * item.quantity; // Товар без скидки
+        }
+        return acc + (item.price * item.quantity * 0.95); // Применение 5% скидки к остальным товарам
+    }, 0);
+
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
-
     const handleSubmit = async () => {
-
-
         const orderData = {
             firstName: userInfo.firstName,
             lastName: userInfo.lastName,
@@ -85,13 +85,14 @@ const Checkout = () => {
             paymentMethod: "kaspi",
             deliveryMethod: userInfo.deliveryMethod,
             products: cart.map((item) => ({
-                id: item.id, quantity: item.quantity,
+                id: item.id,
+                quantity: item.quantity,
             })),
         };
 
         if (!validateFields()) {
             console.log("Validation failed");
-            return; // Останавливаем отправку формы
+            return;
         }
 
         try {
@@ -99,8 +100,8 @@ const Checkout = () => {
 
             if (response.status === 200) {
                 console.log('Order created successfully:', response.data);
-                setCart([]);  // Очистка корзины после успешного создания заказа
-                navigate('/order-success');  // Перенаправление пользователя на страницу с подтверждением заказа
+                setCart([]);
+                navigate('/order-success');
             } else {
                 console.error('Failed to create order:', response.data);
             }
@@ -131,7 +132,7 @@ const Checkout = () => {
                                     value="delevery_shop"
                                     id='delevery__shop'
                                     checked={userInfo.deliveryMethod === "delevery_shop"}
-                                    onChange={handleRadioChange} // Обработчик
+                                    onChange={handleRadioChange}
                                 />
                                 <input
                                     type="radio"
@@ -140,7 +141,7 @@ const Checkout = () => {
                                     value='delevery_adress'
                                     id='delevery__adress'
                                     checked={userInfo.deliveryMethod === "delevery_adress"}
-                                    onChange={handleRadioChange} // Обработчик
+                                    onChange={handleRadioChange}
                                 />
                                 <label htmlFor="delevery__shop" className='checkout__label checkout__label-shop'>
                                     <div className="checkout__content">
@@ -152,15 +153,14 @@ const Checkout = () => {
                                         </div>
                                     </div>
                                     <span className="checkout__yes">
-                                <img src={yes} alt=""/>
-                            </span>
+                                        <img src={yes} alt=""/>
+                                    </span>
                                     <span className="checkout__no">
-                                <img src={no} alt=""/>
-                            </span>
+                                        <img src={no} alt=""/>
+                                    </span>
                                 </label>
                                 <label htmlFor="delevery__adress" className='checkout__label checkout__label-adress'>
                                     <div className="checkout__content">
-
                                         <div className="checkout__label-icon">
                                             <img src={adress} alt=""/>
                                         </div>
@@ -169,11 +169,11 @@ const Checkout = () => {
                                         </div>
                                     </div>
                                     <span className="checkout__yes">
-                                <img src={yes} alt=""/>
-                            </span>
+                                        <img src={yes} alt=""/>
+                                    </span>
                                     <span className="checkout__no">
-                                <img src={no} alt=""/>
-                            </span>
+                                        <img src={no} alt=""/>
+                                    </span>
                                 </label>
                             </div>
                         </div>
@@ -181,59 +181,46 @@ const Checkout = () => {
                             <div className="checkout__input">
                                 <input
                                     required
-
                                     type="text"
                                     className={`checkout__input-item ${invalidFields.address ? "invalid" : ""}`}
                                     name="address"
                                     value={userInfo.address}
                                     onChange={handleInputChange}
-                                    placeholder={` ${invalidFields.phoneNumber ? "Введите адрес " : "Адрес"}`}
-
-
+                                    placeholder={invalidFields.address ? "Введите адрес " : "Адрес"}
                                 />
                             </div>
                             <div className="checkout__input">
                                 <input
-                                    type="text" required
-
+                                    type="text"
+                                    required
                                     className={`checkout__input-item ${invalidFields.firstName ? "invalid" : ""}`}
-                                    placeholder={` ${invalidFields.phoneNumber ? "Введите имя " : "Имя"}`}
-
+                                    placeholder={invalidFields.firstName ? "Введите имя " : "Имя"}
                                     name="firstName"
                                     value={userInfo.firstName}
                                     onChange={handleInputChange}
-
                                 />
                             </div>
                             <div className="checkout__input">
                                 <input
                                     required
-
                                     type="text"
                                     className={`checkout__input-item ${invalidFields.lastName ? "invalid" : ""}`}
-                                    placeholder={` ${invalidFields.phoneNumber ? "Введите фамилию " : "Фамилия"}`}
-
+                                    placeholder={invalidFields.lastName ? "Введите фамилию " : "Фамилия"}
                                     name="lastName"
                                     value={userInfo.lastName}
                                     onChange={handleInputChange}
-
                                 />
                             </div>
                             <div className="checkout__input">
                                 <InputMask
                                     required
-
                                     mask="+7 (999) 999-99-99"
-                                    // maskChar={null}
                                     className={`checkout__input-item ${invalidFields.phoneNumber ? "invalid" : ""}`}
-                                    placeholder={` ${invalidFields.phoneNumber ? "Введите номер телефона " : "Номер телефона"}`}
+                                    placeholder={invalidFields.phoneNumber ? "Введите номер телефона " : "Номер телефона"}
                                     name="phoneNumber"
                                     value={userInfo.phoneNumber}
-
                                     onChange={handleInputChange}
                                 />
-
-
                             </div>
                         </div>
                         <div className="checkout__pay">
@@ -241,7 +228,6 @@ const Checkout = () => {
                                 Способ оплаты
                             </div>
                             <div className="checkout__form">
-
                                 <input
                                     type="radio"
                                     className='sdn'
@@ -249,12 +235,10 @@ const Checkout = () => {
                                     id='delevery__kaspi'
                                     value="kaspi"
                                     checked={true}
-                                    onChange={handleRadioChange} // Обработчик
+                                    onChange={handleRadioChange}
                                 />
-
                                 <label htmlFor="delevery__kaspi" className='checkout__label checkout__label-kaspi'>
                                     <div className="checkout__content">
-
                                         <div className="checkout__label-icon">
                                             <img src={kaspi} alt=""/>
                                         </div>
@@ -263,40 +247,31 @@ const Checkout = () => {
                                         </div>
                                     </div>
                                     <span className="checkout__yes">
-                                <img src={yes} alt=""/>
-                            </span>
+                                        <img src={yes} alt=""/>
+                                    </span>
                                     <span className="checkout__no">
-                                <img src={no} alt=""/>
-                            </span>
+                                        <img src={no} alt=""/>
+                                    </span>
                                 </label>
                             </div>
                         </div>
-
                     </div>
                     <div className="checkout__right">
-
                         <div className='cart'>
-                            {cart.map((item) => (<div className='cart__item' key={item.id}>
+                            {cart.map((item) => (
+                                <div className='cart__item' key={item.id}>
                                     <div className="cart__top">
                                         <div className="cart__photo">
                                             <img src={'/api' + item.imageUrl} alt=""/>
                                         </div>
                                         <div className="cart__content">
-
                                             <div className="cart__name">
-                                                <div className="cart__name-item">
-                                                    {item.name}
-                                                </div>
+                                                <div className="cart__name-item">{item.name}</div>
                                                 <div className='cart__delete' onClick={() => removeFromCart(item.id)}>
-                                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M15 15L23.75 23.75M15 15L6.25 6.25M15 15L6.25 23.75M15 15L23.75 6.25"
-                                                            stroke="#989896" strokeWidth="2" strokeLinecap="round"/>
+                                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M15 15L23.75 23.75M15 15L6.25 6.25M15 15L6.25 23.75M15 15L23.75 6.25" stroke="#989896" strokeWidth="2" strokeLinecap="round"/>
                                                     </svg>
-
                                                 </div>
-
                                             </div>
                                             <div className="cart__price">
                                                 <div className="cart__price-input">
@@ -307,15 +282,9 @@ const Checkout = () => {
                                                         onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
                                                     />
                                                 </div>
-                                                <div className="cart__price-text">
-                                                    {item.price * item.quantity} ₸
-                                                </div>
-
-
+                                                <div className="cart__price-text">{item.price * item.quantity} ₸</div>
                                             </div>
-
                                         </div>
-
                                     </div>
                                     <div className="cart__price-mobile">
                                         <div className="cart__price-input">
@@ -326,37 +295,28 @@ const Checkout = () => {
                                                 onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
                                             />
                                         </div>
-                                        <div className="cart__price-text">
-                                            {item.price * item.quantity} ₸
-                                        </div>
+                                        <div className="cart__price-text">{item.price * item.quantity} ₸</div>
                                         <div className='cart__delete-mobile' onClick={() => removeFromCart(item.id)}>
-                                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M15 15L23.75 23.75M15 15L6.25 6.25M15 15L6.25 23.75M15 15L23.75 6.25"
-                                                    stroke="#989896" strokeWidth="2" strokeLinecap="round"/>
+                                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M15 15L23.75 23.75M15 15L6.25 6.25M15 15L6.25 23.75M15 15L23.75 6.25" stroke="#989896" strokeWidth="2" strokeLinecap="round"/>
                                             </svg>
-
                                         </div>
                                     </div>
                                 </div>
-
                             ))}
-
                         </div>
                         <div className="checkout__price-small">
                             <div className="checkout__price-left"> Товаров: {totalItems}. На сумму</div>
                             <div className="checkout__price-right">{totalCost} ₸</div>
                         </div>
-
                         <div className="checkout__price">
-                            <div className="checkout__price-left">Итоговая цена (-5%)</div>
-                            <div className="checkout__price-right">{totalCost * 0.95} ₸</div>
+                            <div className="checkout__price-left">Итоговая цена:</div>
+                            <div className="checkout__price-right">{totalCostWithDiscount} ₸</div>
                         </div>
                         <div className="checkout__price">
                             <div className="checkout__price-left">Доставка*</div>
                             <div className="checkout__price-right">
-                                {totalCost * 0.95 >= 20000 ? "Бесплатно " : "По тарифу яндекс"}
+                                {totalCostWithDiscount >= 20000 ? "Бесплатно " : "По тарифу яндекс"}
                             </div>
                         </div>
                         <div className="sub">Доставка бесплатно при заказе от 20 000 тенге</div>
@@ -367,9 +327,7 @@ const Checkout = () => {
                 </div>
             </>)}
         </>
-
     );
-
 };
 
 export default Checkout;

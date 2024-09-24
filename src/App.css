@@ -384,6 +384,20 @@ h6 {
     color: rgba(0, 0, 0, 0.6);
 }
 
+.detail__price-procent{
+    min-width: 41px;
+    height: 26px;
+    background: #0CE3CB;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    padding: 0 6px;
+}
+
 
 .product__btn {
     width: 100%;

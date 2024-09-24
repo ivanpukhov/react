@@ -8,8 +8,8 @@ const Product = ({ product }) => {
     // Проверить, есть ли товар в корзине
     const isInCart = !!cart.find(item => Number(item.id) === Number(product.id));
 
-    // Рассчитать цену без скидки
-    const priceWithoutDiscount = product.price + (product.price * product.discont / 100);
+    // Рассчитать исходную цену (x) до применения скидки
+    const priceWithoutDiscount = product.price / (1 - product.discont / 100);
 
     return (
         <Link to={`/product/${product.id}`} key={product.id} className="product">
@@ -22,7 +22,7 @@ const Product = ({ product }) => {
                     <div className="r12" style={{ position: 'relative', }}>
                         {product.category === 'discont' && (
                             <span style={{ textDecoration: 'line-through', marginRight: '10px', fontSize:'70%', color: '#ff0000' }}>
-                            {priceWithoutDiscount} ₸
+                            {priceWithoutDiscount.toFixed(0)} ₸
                         </span>
                         )}
                     </div>
