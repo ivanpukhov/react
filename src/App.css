@@ -364,6 +364,16 @@ h6 {
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.r12{
+    transform: rotate(-2deg);
+    margin-right: -5px;
+    margin-top: -5px;
+
 }
 
 .footer__mobile {

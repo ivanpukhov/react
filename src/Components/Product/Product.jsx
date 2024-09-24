@@ -8,6 +8,9 @@ const Product = ({ product }) => {
     // Проверить, есть ли товар в корзине
     const isInCart = !!cart.find(item => Number(item.id) === Number(product.id));
 
+    // Рассчитать цену без скидки
+    const priceWithoutDiscount = product.price + (product.price * product.discont / 100);
+
     return (
         <Link to={`/product/${product.id}`} key={product.id} className="product">
             <div className="product__photo">
@@ -15,13 +18,24 @@ const Product = ({ product }) => {
             </div>
             <div className="product__content">
                 <div className="product__title">{product.name}</div>
-                <div className="product__price">{product.price} <span>₸</span></div>
+                <div className="product__price">
+                    <div className="r12" style={{ position: 'relative', }}>
+                        {product.category === 'discont' && (
+                            <span style={{ textDecoration: 'line-through', marginRight: '10px', fontSize:'70%', color: '#ff0000' }}>
+                            {priceWithoutDiscount} ₸
+                        </span>
+                        )}
+                    </div>
+                    <div className="r22">
+                        {product.price} <span>₸</span>
+                    </div>
+
+                </div>
             </div>
-            
-                <Link to={`/product/${product.id}`} className={`product__btn ${isInCart ? 'button-disabled' : ''}`}>
-                    {isInCart ? "В корзине" : "Купить"}
-                </Link>
-            
+
+            <Link to={`/product/${product.id}`} className={`product__btn ${isInCart ? 'button-disabled' : ''}`}>
+                {isInCart ? "В корзине" : "Купить"}
+            </Link>
         </Link>
     );
 };
