@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { CartContext } from "../Product/CartContext";  // Импортировать ваш контекст корзины
+import React, {useContext} from "react";
+import {Link} from "react-router-dom";
+import {CartContext} from "../Product/CartContext"; // Импортировать ваш контекст корзины
+import dicont from '../../assets/img/disont.svg'
 
-const Product = ({ product }) => {
-    const { cart } = useContext(CartContext); // Использовать контекст корзины
+const Product = ({product}) => {
+    const {cart} = useContext(CartContext); // Использовать контекст корзины
 
     // Проверить, есть ли товар в корзине
     const isInCart = !!cart.find(item => Number(item.id) === Number(product.id));
@@ -14,14 +15,31 @@ const Product = ({ product }) => {
     return (
         <Link to={`/product/${product.id}`} key={product.id} className="product">
             <div className="product__photo">
-                <img src={'/api' + product.imageUrl} alt="" />
+                <img src={'https://miko-astana.kz/api' + product.imageUrl} alt=""/>
+                {product.category === 'discont' && (
+
+                    <div className="dicont">
+                        <img src={dicont} alt=""/>
+
+                        <div className="dicont__text">
+                            {product.discont}%
+                        </div>
+
+                    </div>
+                )}
+
             </div>
             <div className="product__content">
                 <div className="product__title">{product.name}</div>
                 <div className="product__price">
-                    <div className="r12" style={{ position: 'relative', }}>
+                    <div className="r12" style={{position: 'relative',}}>
                         {product.category === 'discont' && (
-                            <span style={{ textDecoration: 'line-through', marginRight: '10px', fontSize:'70%', color: '#ff0000' }}>
+                            <span style={{
+                                textDecoration: 'line-through',
+                                marginRight: '10px',
+                                fontSize: '70%',
+                                color: '#ff0000'
+                            }}>
                             {priceWithoutDiscount.toFixed(0)} ₸
                         </span>
                         )}
