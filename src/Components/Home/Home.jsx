@@ -11,7 +11,7 @@ const Home = () => {
             <div className="home">
                 <HomeSlider/>
                 <Catalog/>
-                <a href='https://wa.me/77020581667' className='wame' target='_blank'>Связаться с менеджером</a>
+                <a href='https://wa.me/77088024110' className='wame' target='_blank'>Связаться с менеджером</a>
 
             </div>
 
